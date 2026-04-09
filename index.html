@@ -126,10 +126,10 @@ textarea {
 <h1>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</h1>
 <h2>CUSTOMER REQUESTED TO CANCEL SERVICE</h2>
 
-<label>Addressed customer by name (Y/N)</label>
+<label>Addressed customer by name (Y/ N)</label>
 <div class="toggle-group" data-id="name"></div>
 
-<label>Used reflective language / empathy (Y/N)</label>
+<label>Used reflective language to repeat customer’s experience back to them / express empathy in my own words (Y/N)</label>
 <div class="toggle-group" data-id="reflective"></div>
 
 <label>Reason for cancellation</label>
@@ -137,7 +137,7 @@ textarea {
 
 <label>Solution(s) offered</label>
 <div class="checkbox-group" id="solutions">
-  <label><input type="checkbox"> Explained the value of service</label>
+  <label><input type="checkbox"> Explain of the value of service</label>
   <label><input type="checkbox"> Outlined the benefits and value of retaining the service</label>
   <label>
     <input type="checkbox"> Offered Price Drop from $
@@ -150,13 +150,13 @@ textarea {
   </label>
 </div>
 
-<label>Apology / empathy expressed (Y/N)</label>
+<label>Apology / empathy expressed? (Y/N)</label>
 <div class="toggle-group" data-id="apology"></div>
 
-<label>Customer response to solutions offered</label>
+<label>Customer response to solution(s) offered</label>
 <textarea id="response"></textarea>
 
-<label>Actions taken in account</label>
+<label>List actions taken in account to set up save and / or cancel</label>
 <div class="checkbox-group" id="actions">
   <label><input type="checkbox"> Saved from Cancel through building value of service</label>
   <label>
@@ -169,17 +169,17 @@ textarea {
     <input type="text" class="inline">
   </label>
   <label>
-    <input type="checkbox"> Processed the cancellation, removed card on file, and sent confirmation email
+    <input type="checkbox"> Processed the cancellation of Account, removed card on file and sent email to the customer for the account closure confirmation
   </label>
 </div>
 
-<label>Coordination steps taken (if applicable)</label>
+<label>List coordination steps taken with local completed if applicable</label>
 <textarea id="coordination"></textarea>
 
-<label>Asked for permission to put on hold (Yes/No/N/A)</label>
+<label>Asked for permission to put on hold (Yes/ N/NA)</label>
 <div class="toggle-group" data-id="hold"></div>
 
-<label>Asked if additional help was needed (Y/N)</label>
+<label>Asked customer if there was anything I could do to help before ending call (Y/N)</label>
 <div class="toggle-group" data-id="help"></div>
 
 <div class="actions">
@@ -221,34 +221,33 @@ function getToggle(id) {
 }
 
 function getCheckboxData(container) {
-  const out = [];
+  const lines = [];
   container.querySelectorAll("label").forEach(label => {
     const cb = label.querySelector("input[type=checkbox]");
     if (cb && cb.checked) {
-      let line = label.innerText.trim();
-      label.querySelectorAll("input[type=text]").forEach(t => {
-        if (t.value) line += " " + t.value;
+      let text = label.innerText.trim();
+      label.querySelectorAll("input[type=text]").forEach(i => {
+        if (i.value) text += " " + i.value;
       });
-      out.push("- " + line);
+      lines.push("- " + text);
     }
   });
-  return out.length ? out.join("\n") : "- None";
+  return lines.length ? lines.join("\n") : "- None";
 }
 
 function generateSummary() {
   let s = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
 
-  s += "Addressed customer by name (Y/N): " + getToggle("name") + "\n";
-  s += "Used reflective language / empathy (Y/N): " + getToggle("reflective") + "\n\n";
-
+  s += "Addressed customer by name (Y/ N): " + getToggle("name") + "\n";
+  s += "Used reflective language to repeat customer’s experience back to them / express empathy in my own words (Y/N): " + getToggle("reflective") + "\n\n";
   s += "Reason for cancellation:\n" + reason.value + "\n\n";
   s += "Solution(s) offered:\n" + getCheckboxData(solutions) + "\n\n";
-  s += "Apology / empathy expressed (Y/N): " + getToggle("apology") + "\n\n";
-  s += "Customer response to solutions offered:\n" + response.value + "\n\n";
-  s += "Actions taken in account:\n" + getCheckboxData(actions) + "\n\n";
-  s += "Coordination steps taken:\n" + coordination.value + "\n\n";
-  s += "Asked for permission to put on hold (Yes/No/N/A): " + getToggle("hold") + "\n";
-  s += "Asked if additional help was needed (Y/N): " + getToggle("help");
+  s += "Apology / empathy expressed? (Y/N): " + getToggle("apology") + "\n\n";
+  s += "Customer response to solution(s) offered:\n" + response.value + "\n\n";
+  s += "List actions taken in account to set up save and / or cancel:\n" + getCheckboxData(actions) + "\n\n";
+  s += "List coordination steps taken with local completed if applicable:\n" + coordination.value + "\n\n";
+  s += "Asked for permission to put on hold (Yes/ N/NA): " + getToggle("hold") + "\n";
+  s += "Asked customer if there was anything I could do to help before ending call (Y/N): " + getToggle("help");
 
   summary.value = s;
   navigator.clipboard.writeText(s);
@@ -271,4 +270,3 @@ setupToggles();
 
 </body>
 </html>
-``
