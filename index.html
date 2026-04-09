@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</title>
+
+<style>
+body {
+    background: #0f172a;
+    color: #e5e7eb;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+    background: #020617;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 15px;
+    max-height: 80px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+h1 {
+    color: #38bdf8;
+}
+
+h2 {
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+textarea, input[type="text"] {
+    width: 100%;
+    margin-top: 6px;
+    padding: 8px;
+    background: #1e293b;
+    color: #e5e7eb;
+    border: none;
+    border-radius: 5px;
+}
+
+textarea {
+    min-height: 70px;
+}
+
+.toggle-group button {
+    margin-right: 6px;
+    margin-top: 6px;
+    padding: 6px 14px;
+    background: #334155;
+    color: #e5e7eb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.toggle-group button.active {
+    background: #38bdf8;
+    color: #020617;
+    font-weight: bold;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    margin-top: 6px;
+}
+
+.actions {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.actions button {
+    padding: 10px 20px;
+    font-size: 15px;
+    margin: 5px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+.generate {
+    background: #22c55e;
+    color: #020617;
+}
+
+.clear {
+    background: #ef4444;
+    color: #fff;
+}
+
+#summary {
+    min-height: 220px;
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<img src="logo.png" alt="Company Logo" class="logo">
+
+<h1>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</h1>
+<h2>CUSTOMER REQUESTED TO CANCEL SERVICE</h2>
+
+<label>Addressed customer by name:</label>
+<div class="toggle-group" data-id="name" data-default="Yes"></div>
+
+<label>Used reflective language / empathy:</label>
+<div class="toggle-group" data-id="reflective" data-default="Yes"></div>
+
+<label>Reason for cancellation:</label>
+<textarea id="reason"></textarea>
+
+<label>Solution(s) offered:</label>
+<div class="checkbox-group">
+    <label><input type="checkbox"> Explained the value of service</label>
+    <label><input type="checkbox"> Outlined the benefits and value of retaining the service</label>
+    <label>
+        <input type="checkbox"> Offered Price Drop from $
+        <input type="text" style="width:90px"> to $
+        <input type="text" style="width:90px">
+    </label>
+    <label><input type="checkbox"> Others</label>
+</div>
+
+<label>Apology / empathy expressed:</label>
+<div class="toggle-group" data-id="apology" data-default="Yes"></div>
+
+<label>Customer response to solutions offered:</label>
+<textarea id="response"></textarea>
+
+<label>Actions taken in account:</label>
+<div class="checkbox-group">
+    <label><input type="checkbox"> Saved from Cancel through building value of service</label>
+    <label>
+        <input type="checkbox"> Saved from Cancel through Price Drop from $
+        <input type="text" style="width:90px"> to $
+        <input type="text" style="width:90px">
+    </label>
+    <label>
+        <input type="checkbox"> Saved from Cancel through Postponement to
+        <input type="text" style="width:140px">
+    </label>
+    <label>
+        <input type="checkbox"> Processed the cancellation of Account, removed card on file and sent email confirmation
+    </label>
+</div>
+
+<label>Coordination steps taken (if applicable):</label>
+<textarea></textarea>
+
+<label>Asked for permission to put on hold:</label>
+<div class="toggle-group" data-id="hold" data-default="N/A"></div>
+
+<label>Asked if additional help was needed:</label>
+<div class="toggle-group" data-id="help" data-default="Yes"></div>
+
+<div class="actions">
+    <button class="generate" onclick="generateSummary()">Summarize & Copy</button>
+    <button class="clear" onclick="clearForm()">Clear Form</button>
+</div>
+
+<label>Generated Summary:</label>
+<textarea id="summary"></textarea>
+
+</div>
+
+<script>
+function setupToggles() {
+    document.querySelectorAll(".toggle-group").forEach(group => {
+        ["Yes","No","N/A"].forEach(val => {
+            const btn = document.createElement("button");
+            btn.textContent = val;
+            if (val === group.dataset.default) btn.classList.add("active");
+            btn.onclick = () => {
+                group.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+            };
+            group.appendChild(btn);
+        });
+    });
+}
+
+function getToggle(group) {
+    return group.querySelector(".active").textContent;
+}
+
+function generateSummary() {
+    let text = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
+
+    document.querySelectorAll(".toggle-group").forEach(g => {
+        text += g.previousElementSibling.innerText + " " + getToggle(g) + "\n";
+    });
+
+    text += "\nReason for Cancellation:\n" + document.getElementById("reason").value;
+    text += "\n\nCustomer Response to Solutions:\n" + document.getElementById("response").value;
+
+    document.getElementById("summary").value = text;
+    navigator.clipboard.writeText(text);
+}
+
+function clearForm() {
+    document.querySelectorAll("textarea, input[type=text]").forEach(e => e.value = "");
+    document.querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false);
+
+    document.querySelectorAll(".toggle-group").forEach(g => {
+        let def = "No";
+        if (["name","reflective","apology","help"].includes(g.dataset.id)) def = "Yes";
+        if (g.dataset.id === "hold") def = "N/A";
+
+        g.querySelectorAll("button").forEach(b => {
+            b.classList.toggle("active", b.textContent === def);
+        });
+    });
+}
+
+setupToggles();
+</script>
+
+</body>
+</html>
