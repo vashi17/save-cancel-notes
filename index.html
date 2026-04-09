@@ -5,192 +5,238 @@
 <title>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</title>
 
 <style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #0b1220;
-    color: #e5e7eb;
-}
+    body {
+        background-color: #0f172a;
+        color: #e5e7eb;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+    }
 
-.container {
-    max-width: 950px;
-    margin: auto;
-    padding: 30px;
-}
+    .container {
+        max-width: 900px;
+        margin: auto;
+        background-color: #020617;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
 
-h1 {
-    text-align: center;
-    color: #22c55e;
-    margin-bottom: 30px;
-}
+    h1, h2 {
+        text-align: center;
+        color: #38bdf8;
+    }
 
-label {
-    display: block;
-    font-weight: bold;
-    margin-top: 20px;
-}
+    h2 {
+        margin-top: 10px;
+        font-size: 20px;
+    }
 
-textarea, input[type="text"], input[type="number"], select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 8px;
-    background-color: #020617;
-    color: #e5e7eb;
-    border: 1px solid #334155;
-    border-radius: 6px;
-}
+    .logo {
+        display: block;
+        margin: 0 auto 15px;
+        max-height: 80px;
+    }
 
-textarea {
-    min-height: 80px;
-}
+    label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+    }
 
-.inline {
-    width: 120px;
-    margin: 0 5px;
-}
+    input[type="text"], textarea {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: none;
+        margin-top: 6px;
+        background: #1e293b;
+        color: #e5e7eb;
+    }
 
-.checkbox-group label {
-    font-weight: normal;
-    margin-top: 10px;
-}
+    textarea {
+        resize: vertical;
+        min-height: 60px;
+    }
 
-.buttons {
-    display: flex;
-    gap: 15px;
-    margin-top: 30px;
-}
+    .toggle-group button {
+        margin: 6px 5px 0 0;
+        padding: 6px 12px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        background-color: #334155;
+        color: #e5e7eb;
+    }
 
-button {
-    flex: 1;
-    padding: 14px;
-    font-size: 16px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-}
+    .toggle-group button.active {
+        background-color: #38bdf8;
+        color: #020617;
+        font-weight: bold;
+    }
 
-.generate {
-    background-color: #22c55e;
-    color: #022c22;
-}
+    .checkbox-group {
+        margin-top: 8px;
+    }
 
-.clear {
-    background-color: #ef4444;
-    color: #ffffff;
-}
+    .checkbox-group label {
+        font-weight: normal;
+        margin-top: 8px;
+    }
 
-.output {
-    margin-top: 30px;
-    background-color: #020617;
-    border: 1px solid #334155;
-    border-radius: 6px;
-    padding: 15px;
-}
+    .actions {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .actions button {
+        padding: 10px 18px;
+        margin: 5px;
+        font-size: 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    .generate {
+        background-color: #22c55e;
+        color: #020617;
+    }
+
+    .clear {
+        background-color: #ef4444;
+        color: #ffffff;
+    }
+
+    pre {
+        background-color: #020617;
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 20px;
+        white-space: pre-wrap;
+        display: none;
+    }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-<h1>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</h1>
+    <img src="logo.png" alt="Company Logo" class="logo">
 
-<label>Addressed customer by name</label>
-<select id="addressed">
-<option>Yes</option>
-<option>No</option>
-<option>N/A</option>
-</select>
+    <h1>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</h1>
+    <h2>CUSTOMER REQUESTED TO CANCEL SERVICE</h2>
 
-<label>Used reflective language / empathy</label>
-<select id="reflective">
-<option>Yes</option>
-<option>No</option>
-<option>N/A</option>
-</select>
+    <label>1. Addressed customer by name:</label>
+    <div class="toggle-group" data-id="nameAddressed"></div>
 
-<label>Reason for cancellation</label>
-<textarea id="reason"></textarea>
+    <label>2. Used reflective language / empathy:</label>
+    <div class="toggle-group" data-id="reflective"></div>
 
-<label>Apology / empathy expressed</label>
-<select id="apology">
-<option>Yes</option>
-<option>No</option>
-<option>N/A</option>
-</select>
+    <label>3. Reason for cancellation:</label>
+    <textarea id="reason"></textarea>
 
-<label>Customer response</label>
-<textarea id="response"></textarea>
+    <label>4. Solutions offered:</label>
+    <div class="checkbox-group">
+        <label><input type="checkbox"> Explained the value of service</label>
+        <label><input type="checkbox"> Outlined the benefits and value of retaining the service</label>
+        <label>
+            <input type="checkbox"> Offered Price Drop from $
+            <input type="text" style="width:80px;"> to $
+            <input type="text" style="width:80px;">
+        </label>
+        <label><input type="checkbox"> Others</label>
+    </div>
 
-<label>Coordination steps</label>
-<textarea id="coordination"></textarea>
+    <label>5. Apology / empathy expressed:</label>
+    <div class="toggle-group" data-id="apology"></div>
 
-<label>Permission to put on hold</label>
-<select id="hold">
-<option>Yes</option>
-<option>No</option>
-<option>N/A</option>
-</select>
+    <label>6. Customer response to solutions offered:</label>
+    <textarea id="response"></textarea>
 
-<label>Asked if additional help was needed</label>
-<select id="help">
-<option>Yes</option>
-<option>No</option>
-<option>N/A</option>
-</select>
+    <label>7. Actions taken:</label>
+    <div class="checkbox-group">
+        <label><input type="checkbox"> Saved from Cancel through building value of service</label>
+        <label>
+            <input type="checkbox"> Saved from Cancel through Price Drop from $
+            <input type="text" style="width:80px;"> to $
+            <input type="text" style="width:80px;">
+        </label>
+        <label>
+            <input type="checkbox"> Saved from Cancel through Postponement to
+            <input type="text" style="width:150px;">
+        </label>
+        <label><input type="checkbox"> Processed cancellation, removed card, and sent confirmation email</label>
+    </div>
 
-<div class="buttons">
-<button class="generate" onclick="generateNotes()">Generate & Copy Notes</button>
-<button class="clear" onclick="clearForm()">Clear Entire Form</button>
-</div>
+    <label>8. Coordination steps with local team:</label>
+    <textarea></textarea>
 
-<textarea id="output" class="output"
-placeholder="Generated summary will appear here. You can edit it before copying...">
-</textarea>
+    <label>9. Asked for permission to put on hold:</label>
+    <div class="toggle-group" data-id="holdPermission"></div>
 
-<div class="buttons">
-<button onclick="copySummary()">Copy Summary</button>
-<button onclick="clearSummary()">Clear Summary</button>
-</div>
+    <label>10. Asked if additional help was needed:</label>
+    <div class="toggle-group" data-id="helpAsk"></div>
+
+    <div class="actions">
+        <button class="generate" onclick="generateForm()">Generate & Copy</button>
+        <button class="clear" onclick="clearForm()">Clear Form</button>
+    </div>
+
+    <pre id="output"></pre>
 
 </div>
 
 <script>
-function generateNotes() {
-let text = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
-
-text += "Addressed customer by name: " + addressed.value + "\n";
-text += "Used reflective language / empathy: " + reflective.value + "\n\n";
-text += "Reason for cancellation:\n" + reason.value + "\n\n";
-text += "Apology / empathy expressed: " + apology.value + "\n\n";
-text += "Customer response:\n" + response.value + "\n\n";
-text += "Coordination steps:\n" + coordination.value + "\n\n";
-text += "Permission to put on hold: " + hold.value + "\n";
-text += "Asked if additional help was needed: " + help.value;
-
-navigator.clipboard.writeText(text);
-document.getElementById("output").value = text;
+function createToggle(container, defaultValue) {
+    ["Yes", "No", "N/A"].forEach(val => {
+        const btn = document.createElement("button");
+        btn.textContent = val;
+        if (val === defaultValue) btn.classList.add("active");
+        btn.onclick = () => {
+            [...container.children].forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+        };
+        container.appendChild(btn);
+    });
 }
 
-function copySummary() {
-const output = document.getElementById("output");
-if (!output.value.trim()) return;
-output.select();
-navigator.clipboard.writeText(output.value);
+document.querySelectorAll(".toggle-group").forEach(group => {
+    let def = "No";
+    if (["nameAddressed","reflective","apology","helpAsk"].includes(group.dataset.id)) def = "Yes";
+    if (group.dataset.id === "holdPermission") def = "N/A";
+    createToggle(group, def);
+});
+
+function getToggleValue(group) {
+    return group.querySelector(".active").textContent;
 }
 
-function clearSummary() {
-document.getElementById("output").value = "";
+function generateForm() {
+    let text = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
+    document.querySelectorAll(".toggle-group").forEach(g => {
+        text += g.previousElementSibling.innerText + " " + getToggleValue(g) + "\n";
+    });
+    document.getElementById("output").textContent = text;
+    document.getElementById("output").style.display = "block";
+    navigator.clipboard.writeText(text);
 }
 
 function clearForm() {
-document.querySelectorAll("input, textarea, select").forEach(el => {
-if (el.type === "checkbox") el.checked = false;
-else el.value = "";
-});
-document.getElementById("output").value = "";
+    document.querySelectorAll("input[type=text], textarea").forEach(e => e.value = "");
+    document.querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false);
+    document.querySelectorAll(".toggle-group").forEach(g => {
+        let def = "No";
+        if (["nameAddressed","reflective","apology","helpAsk"].includes(g.dataset.id)) def = "Yes";
+        if (g.dataset.id === "holdPermission") def = "N/A";
+        [...g.children].forEach(b => {
+            b.classList.toggle("active", b.textContent === def);
+        });
+    });
+    document.getElementById("output").style.display = "none";
 }
 </script>
 
 </body>
 </html>
-``
