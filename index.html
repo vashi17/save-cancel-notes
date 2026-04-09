@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Solutions Team ALYSSA(Morsy): Save/Cancel Notes</title>
+<title>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</title>
 
 <style>
 body {
@@ -85,7 +85,6 @@ button {
     border: 1px solid #334155;
     border-radius: 6px;
     padding: 15px;
-    white-space: pre-wrap;
 }
 </style>
 </head>
@@ -93,97 +92,65 @@ button {
 <body>
 <div class="container">
 
-<h1>Solutions Team ALYSSA(Morsy): Save/Cancel Notes</h1>
+<h1>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</h1>
 
 <label>Addressed customer by name</label>
 <select id="addressed">
-    <option>Yes</option>
-    <option>No</option>
-    <option>N/A</option>
+<option>Yes</option>
+<option>No</option>
+<option>N/A</option>
 </select>
 
 <label>Used reflective language / empathy</label>
 <select id="reflective">
-    <option>Yes</option>
-    <option>No</option>
-    <option>N/A</option>
+<option>Yes</option>
+<option>No</option>
+<option>N/A</option>
 </select>
 
 <label>Reason for cancellation</label>
 <textarea id="reason"></textarea>
 
-<label>Solutions Offered</label>
-<div class="checkbox-group">
-    <label><input type="checkbox" id="solValue"> Explained value of service</label>
-    <label><input type="checkbox" id="solBenefits"> Outlined benefits and value of retaining service</label>
-    <label>
-        <input type="checkbox" id="solPrice">
-        Offered Price Drop from $
-        <input type="number" id="oldPrice" class="inline">
-        to $
-        <input type="number" id="newPrice" class="inline">
-    </label>
-    <label>
-        <input type="checkbox" id="solOther">
-        Other:
-        <input type="text" id="otherSol" class="inline">
-    </label>
-</div>
-
 <label>Apology / empathy expressed</label>
 <select id="apology">
-    <option>Yes</option>
-    <option>No</option>
-    <option>N/A</option>
+<option>Yes</option>
+<option>No</option>
+<option>N/A</option>
 </select>
 
-<label>Customer response to solutions offered</label>
+<label>Customer response</label>
 <textarea id="response"></textarea>
 
-<label>Actions Taken in Account</label>
-<div class="checkbox-group">
-    <label><input type="checkbox" id="actValue"> Saved by value-building</label>
-
-    <label>
-        <input type="checkbox" id="actPrice">
-        Saved via Price Drop from $
-        <input type="number" id="actOld" class="inline">
-        to $
-        <input type="number" id="actNew" class="inline">
-    </label>
-
-    <label>
-        <input type="checkbox" id="actPostpone">
-        Saved via Postponement to
-        <input type="text" id="postponeDate" class="inline">
-    </label>
-
-    <label><input type="checkbox" id="actCancel"> Cancellation processed</label>
-</div>
-
-<label>Coordination steps taken with local (if applicable)</label>
+<label>Coordination steps</label>
 <textarea id="coordination"></textarea>
 
-<label>Asked permission to put on hold</label>
+<label>Permission to put on hold</label>
 <select id="hold">
-    <option>Yes</option>
-    <option>No</option>
-    <option>N/A</option>
+<option>Yes</option>
+<option>No</option>
+<option>N/A</option>
 </select>
 
-<label>Asked if there was anything else I could do before ending the call</label>
+<label>Asked if additional help was needed</label>
 <select id="help">
-    <option>Yes</option>
-    <option>No</option>
-    <option>N/A</option>
+<option>Yes</option>
+<option>No</option>
+<option>N/A</option>
 </select>
 
 <div class="buttons">
-    <button class="generate" onclick="generateNotes()">Generate & Copy Notes</button>
-    <button class="clear" onclick="clearForm()">Clear Entire Form</button>
+<button class="generate" onclick="generateNotes()">Generate & Copy Notes</button>
+<button class="clear" onclick="clearForm()">Clear Entire Form</button>
 </div>
 
-<textarea id="output" class="output" placeholder="Generated summary will appear here. You can edit it before copying..."></textarea>
+<textarea id="output" class="output"
+placeholder="Generated summary will appear here. You can edit it before copying...">
+</textarea>
+
+<div class="buttons">
+<button onclick="copySummary()">Copy Summary</button>
+<button onclick="clearSummary()">Clear Summary</button>
+</div>
 
 </div>
 
@@ -193,48 +160,37 @@ let text = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
 
 text += "Addressed customer by name: " + addressed.value + "\n";
 text += "Used reflective language / empathy: " + reflective.value + "\n\n";
-
 text += "Reason for cancellation:\n" + reason.value + "\n\n";
-
-let solutions = [];
-if (solValue.checked) solutions.push("Explained value of service");
-if (solBenefits.checked) solutions.push("Outlined benefits and value of retaining service");
-if (solPrice.checked) solutions.push("Offered Price Drop from $" + oldPrice.value + " to $" + newPrice.value);
-if (solOther.checked && otherSol.value) solutions.push("Other: " + otherSol.value);
-
-if (solutions.length) {
-    text += "Solutions Offered:\n- " + solutions.join("\n- ") + "\n\n";
-}
-
 text += "Apology / empathy expressed: " + apology.value + "\n\n";
 text += "Customer response:\n" + response.value + "\n\n";
-
-let actions = [];
-if (actValue.checked) actions.push("Saved by value-building");
-if (actPrice.checked) actions.push("Saved via Price Drop from $" + actOld.value + " to $" + actNew.value);
-if (actPostpone.checked) actions.push("Saved via Postponement to " + postponeDate.value);
-if (actCancel.checked) actions.push("Processed cancellation, removed card, sent confirmation email");
-
-if (actions.length) {
-    text += "Actions Taken:\n- " + actions.join("\n- ") + "\n\n";
-}
-
 text += "Coordination steps:\n" + coordination.value + "\n\n";
 text += "Permission to put on hold: " + hold.value + "\n";
 text += "Asked if additional help was needed: " + help.value;
 
 navigator.clipboard.writeText(text);
-document.getElementById("output").textContent = text;
+document.getElementById("output").value = text;
+}
+
+function copySummary() {
+const output = document.getElementById("output");
+if (!output.value.trim()) return;
+output.select();
+navigator.clipboard.writeText(output.value);
+}
+
+function clearSummary() {
+document.getElementById("output").value = "";
 }
 
 function clearForm() {
 document.querySelectorAll("input, textarea, select").forEach(el => {
-    if (el.type === "checkbox") el.checked = false;
-    else el.value = "";
+if (el.type === "checkbox") el.checked = false;
+else el.value = "";
 });
-document.getElementById("output").textContent = "";
+document.getElementById("output").value = "";
 }
 </script>
 
 </body>
 </html>
+``
