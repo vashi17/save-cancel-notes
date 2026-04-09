@@ -6,113 +6,113 @@
 
 <style>
 body {
-    background: #0f172a;
-    color: #e5e7eb;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 20px;
+  background: #0f172a;
+  color: #e5e7eb;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
 }
 
 .container {
-    max-width: 1000px;
-    margin: auto;
-    background: #020617;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  max-width: 1000px;
+  margin: auto;
+  background: #020617;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
 }
 
 .logo {
-    display: block;
-    margin: 0 auto 15px;
-    max-height: 80px;
+  display: block;
+  margin: 0 auto 15px;
+  max-height: 80px;
 }
 
 h1 {
-    text-align: center;
-    color: #38bdf8;
-    font-size: 22px;
+  text-align: center;
+  color: #38bdf8;
+  font-size: 22px;
 }
 
 h2 {
-    text-align: center;
-    font-size: 16px;
-    margin-bottom: 25px;
+  text-align: center;
+  font-size: 16px;
+  margin-bottom: 25px;
 }
 
 label {
-    display: block;
-    font-weight: bold;
-    margin-top: 15px;
+  display: block;
+  font-weight: bold;
+  margin-top: 16px;
 }
 
 textarea,
 input[type="text"] {
-    width: 100%;
-    background: #1e293b;
-    color: #e5e7eb;
-    border: none;
-    border-radius: 6px;
-    padding: 8px;
-    margin-top: 6px;
+  width: 100%;
+  background: #1e293b;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  margin-top: 6px;
 }
 
 textarea {
-    min-height: 70px;
-}
-
-.toggle-group button {
-    margin-right: 8px;
-    margin-top: 6px;
-    padding: 6px 14px;
-    background: #334155;
-    color: #e5e7eb;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.toggle-group button.active {
-    background: #38bdf8;
-    color: #020617;
-    font-weight: bold;
-}
-
-.checkbox-group label {
-    font-weight: normal;
-    margin-top: 6px;
+  min-height: 70px;
 }
 
 .inline {
-    width: 100px;
+  width: 120px;
+}
+
+.toggle-group button {
+  margin-right: 8px;
+  margin-top: 6px;
+  padding: 6px 14px;
+  background: #334155;
+  color: #e5e7eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.toggle-group button.active {
+  background: #38bdf8;
+  color: #020617;
+  font-weight: bold;
+}
+
+.checkbox-group label {
+  font-weight: normal;
+  margin-top: 6px;
 }
 
 .actions {
-    text-align: center;
-    margin-top: 25px;
+  text-align: center;
+  margin-top: 25px;
 }
 
 .actions button {
-    padding: 12px 22px;
-    font-size: 15px;
-    margin: 6px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+  padding: 12px 22px;
+  font-size: 15px;
+  margin: 6px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 .generate {
-    background: #22c55e;
-    color: #020617;
+  background: #22c55e;
+  color: #020617;
 }
 
 .clear {
-    background: #ef4444;
-    color: #fff;
+  background: #ef4444;
+  color: #ffffff;
 }
 
 #summary {
-    min-height: 220px;
-    margin-top: 15px;
+  min-height: 240px;
+  margin-top: 15px;
 }
 </style>
 </head>
@@ -121,7 +121,7 @@ textarea {
 
 <div class="container">
 
-<img src="logo.png" class="logo" alt="Logo">
+<img src="logo.png" alt="Logo" class="logo">
 
 <h1>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</h1>
 <h2>CUSTOMER REQUESTED TO CANCEL SERVICE</h2>
@@ -137,14 +137,17 @@ textarea {
 
 <label>Solution(s) offered</label>
 <div class="checkbox-group" id="solutions">
-    <label><input type="checkbox"> Explained the value of service</label>
-    <label><input type="checkbox"> Outlined the benefits and value of retaining the service</label>
-    <label>
-        <input type="checkbox"> Offered Price Drop from $
-        <input type="text" class="inline"> to $
-        <input type="text" class="inline">
-    </label>
-    <label><input type="checkbox"> Others</label>
+  <label><input type="checkbox"> Explained the value of service</label>
+  <label><input type="checkbox"> Outlined the benefits and value of retaining the service</label>
+  <label>
+    <input type="checkbox"> Offered Price Drop from $
+    <input type="text" class="inline"> to $
+    <input type="text" class="inline">
+  </label>
+  <label>
+    <input type="checkbox"> Others:
+    <input type="text">
+  </label>
 </div>
 
 <label>Apology / empathy expressed</label>
@@ -154,18 +157,20 @@ textarea {
 <textarea id="response"></textarea>
 
 <label>Actions taken in account</label>
-<div class="checkbox-group" id="actionsTaken">
-    <label><input type="checkbox"> Saved from Cancel through building value of service</label>
-    <label>
-        <input type="checkbox"> Saved from Cancel through Price Drop from $
-        <input type="text" class="inline"> to $
-        <input type="text" class="inline">
-    </label>
-    <label>
-        <input type="checkbox"> Saved from Cancel through Postponement to
-        <input type="text" class="inline">
-    </label>
-    <label><input type="checkbox"> Processed the cancellation, removed card on file, and sent confirmation email</label>
+<div class="checkbox-group" id="actions">
+  <label><input type="checkbox"> Saved from Cancel through building value of service</label>
+  <label>
+    <input type="checkbox"> Saved from Cancel through Price Drop from $
+    <input type="text" class="inline"> to $
+    <input type="text" class="inline">
+  </label>
+  <label>
+    <input type="checkbox"> Saved from Cancel through Postponement to
+    <input type="text" class="inline">
+  </label>
+  <label>
+    <input type="checkbox"> Processed the cancellation of Account, removed card on file, and sent confirmation email
+  </label>
 </div>
 
 <label>Coordination steps taken (if applicable)</label>
@@ -178,88 +183,85 @@ textarea {
 <div class="toggle-group" data-id="help"></div>
 
 <div class="actions">
-    <button class="generate" onclick="generateSummary()">Summarize & Copy</button>
-    <button class="clear" onclick="clearForm()">Clear Form</button>
+  <button class="generate" onclick="generateSummary()">Summarize & Copy</button>
+  <button class="clear" onclick="clearForm()">Clear Form</button>
 </div>
 
-<label>Generated Summary</label>
-<textarea id="summary" readonly></textarea>
+<label>Generated Summary (editable)</label>
+<textarea id="summary"></textarea>
 
 </div>
 
 <script>
-const toggleDefaults = {
-    name: "Yes",
-    reflective: "Yes",
-    apology: "Yes",
-    help: "Yes",
-    hold: "N/A"
+const defaults = {
+  name: "Yes",
+  reflective: "Yes",
+  apology: "Yes",
+  help: "Yes",
+  hold: "N/A"
 };
 
 function setupToggles() {
-    document.querySelectorAll(".toggle-group").forEach(group => {
-        ["Yes","No","N/A"].forEach(val => {
-            const btn = document.createElement("button");
-            btn.textContent = val;
-            if (val === toggleDefaults[group.dataset.id]) btn.classList.add("active");
-            btn.onclick = () => {
-                group.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-            };
-            group.appendChild(btn);
-        });
+  document.querySelectorAll(".toggle-group").forEach(group => {
+    ["Yes","No","N/A"].forEach(option => {
+      const btn = document.createElement("button");
+      btn.textContent = option;
+      if (option === defaults[group.dataset.id]) btn.classList.add("active");
+      btn.onclick = () => {
+        group.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      };
+      group.appendChild(btn);
     });
+  });
 }
 
 function getToggle(group) {
-    return group.querySelector(".active")?.textContent || "N/A";
+  return group.querySelector(".active")?.textContent || "N/A";
 }
 
-function getCheckedItems(container) {
-    let results = [];
-    container.querySelectorAll("label").forEach(label => {
-        const cb = label.querySelector("input[type=checkbox]");
-        if (cb && cb.checked) {
-            let text = label.innerText.trim();
-            label.querySelectorAll("input[type=text]").forEach(t => {
-                if (t.value) text += " " + t.value;
-            });
-            results.push("- " + text);
-        }
-    });
-    return results.length ? results.join("\n") : "- None";
+function getCheckboxData(container) {
+  const list = [];
+  container.querySelectorAll("label").forEach(label => {
+    const cb = label.querySelector("input[type=checkbox]");
+    if (cb && cb.checked) {
+      let text = label.innerText.trim();
+      label.querySelectorAll("input[type=text]").forEach(input => {
+        if (input.value) text += " " + input.value;
+      });
+      list.push("- " + text);
+    }
+  });
+  return list.length ? list.join("\n") : "- None";
 }
 
 function generateSummary() {
-    let summary = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
+  let text = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
 
-    document.querySelectorAll(".toggle-group").forEach(group => {
-        summary += `${group.previousElementSibling.innerText}: ${getToggle(group)}\n`;
-    });
+  document.querySelectorAll(".toggle-group").forEach(group => {
+    text += `${group.previousElementSibling.innerText}: ${getToggle(group)}\n`;
+  });
 
-    summary += "\nReason for Cancellation:\n" + reason.value + "\n\n";
-    summary += "Solution(s) Offered:\n" +
-        getCheckedItems(document.getElementById("solutions")) + "\n\n";
-    summary += "Customer Response to Solutions:\n" + response.value + "\n\n";
-    summary += "Actions Taken in Account:\n" +
-        getCheckedItems(document.getElementById("actionsTaken")) + "\n\n";
-    summary += "Coordination Steps:\n" + coordination.value;
+  text += "\nReason for Cancellation:\n" + reason.value + "\n\n";
+  text += "Solution(s) Offered:\n" + getCheckboxData(solutions) + "\n\n";
+  text += "Customer Response to Solutions:\n" + response.value + "\n\n";
+  text += "Actions Taken in Account:\n" + getCheckboxData(actions) + "\n\n";
+  text += "Coordination Steps:\n" + coordination.value;
 
-    summary.value = summary;
-    document.getElementById("summary").value = summary;
-    navigator.clipboard.writeText(summary);
+  summary.value = text;
+  navigator.clipboard.writeText(text);
 }
 
 function clearForm() {
-    document.querySelectorAll("textarea, input[type=text]").forEach(e => e.value = "");
-    document.querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false);
+  document.querySelectorAll("textarea, input[type=text]").forEach(e => e.value = "");
+  document.querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false);
 
-    document.querySelectorAll(".toggle-group").forEach(group => {
-        const def = toggleDefaults[group.dataset.id];
-        group.querySelectorAll("button").forEach(btn => {
-            btn.classList.toggle("active", btn.textContent === def);
-        });
+  document.querySelectorAll(".toggle-group").forEach(group => {
+    const def = defaults[group.dataset.id];
+    group.querySelectorAll("button").forEach(btn => {
+      btn.classList.toggle("active", btn.textContent === def);
     });
+  });
 }
 
 setupToggles();
@@ -267,3 +269,4 @@ setupToggles();
 
 </body>
 </html>
+``
