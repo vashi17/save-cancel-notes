@@ -8,17 +8,17 @@
 body {
     background: #0f172a;
     color: #e5e7eb;
-    font-family: Arial, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
 }
 
 .container {
-    max-width: 950px;
+    max-width: 1000px;
     margin: auto;
     background: #020617;
     padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.6);
 }
 
 .logo {
@@ -27,33 +27,33 @@ body {
     max-height: 80px;
 }
 
-h1, h2 {
-    text-align: center;
-}
-
 h1 {
+    text-align: center;
     color: #38bdf8;
+    font-size: 22px;
 }
 
 h2 {
-    font-size: 18px;
-    margin-top: 5px;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 25px;
 }
 
 label {
     display: block;
-    margin-top: 15px;
     font-weight: bold;
+    margin-top: 15px;
 }
 
-textarea, input[type="text"] {
+textarea,
+input[type="text"] {
     width: 100%;
-    margin-top: 6px;
-    padding: 8px;
     background: #1e293b;
     color: #e5e7eb;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    padding: 8px;
+    margin-top: 6px;
 }
 
 textarea {
@@ -61,13 +61,13 @@ textarea {
 }
 
 .toggle-group button {
-    margin-right: 6px;
+    margin-right: 8px;
     margin-top: 6px;
     padding: 6px 14px;
     background: #334155;
     color: #e5e7eb;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
 }
 
@@ -82,16 +82,20 @@ textarea {
     margin-top: 6px;
 }
 
+.inline {
+    width: 100px;
+}
+
 .actions {
     text-align: center;
     margin-top: 25px;
 }
 
 .actions button {
-    padding: 10px 20px;
+    padding: 12px 22px;
     font-size: 15px;
-    margin: 5px;
-    border-radius: 6px;
+    margin: 6px;
+    border-radius: 8px;
     border: none;
     cursor: pointer;
 }
@@ -117,81 +121,87 @@ textarea {
 
 <div class="container">
 
-<img src="logo.png" alt="Company Logo" class="logo">
+<img src="logo.png" class="logo" alt="Logo">
 
 <h1>Solutions Team ALYSSA (Morsy): Save/Cancel Notes</h1>
 <h2>CUSTOMER REQUESTED TO CANCEL SERVICE</h2>
 
-<label>Addressed customer by name:</label>
-<div class="toggle-group" data-id="name" data-default="Yes"></div>
+<label>Addressed customer by name</label>
+<div class="toggle-group" data-id="name"></div>
 
-<label>Used reflective language / empathy:</label>
-<div class="toggle-group" data-id="reflective" data-default="Yes"></div>
+<label>Used reflective language / empathy</label>
+<div class="toggle-group" data-id="reflective"></div>
 
-<label>Reason for cancellation:</label>
+<label>Reason for cancellation</label>
 <textarea id="reason"></textarea>
 
-<label>Solution(s) offered:</label>
-<div class="checkbox-group">
+<label>Solution(s) offered</label>
+<div class="checkbox-group" id="solutions">
     <label><input type="checkbox"> Explained the value of service</label>
     <label><input type="checkbox"> Outlined the benefits and value of retaining the service</label>
     <label>
         <input type="checkbox"> Offered Price Drop from $
-        <input type="text" style="width:90px"> to $
-        <input type="text" style="width:90px">
+        <input type="text" class="inline"> to $
+        <input type="text" class="inline">
     </label>
     <label><input type="checkbox"> Others</label>
 </div>
 
-<label>Apology / empathy expressed:</label>
-<div class="toggle-group" data-id="apology" data-default="Yes"></div>
+<label>Apology / empathy expressed</label>
+<div class="toggle-group" data-id="apology"></div>
 
-<label>Customer response to solutions offered:</label>
+<label>Customer response to solutions offered</label>
 <textarea id="response"></textarea>
 
-<label>Actions taken in account:</label>
-<div class="checkbox-group">
+<label>Actions taken in account</label>
+<div class="checkbox-group" id="actionsTaken">
     <label><input type="checkbox"> Saved from Cancel through building value of service</label>
     <label>
         <input type="checkbox"> Saved from Cancel through Price Drop from $
-        <input type="text" style="width:90px"> to $
-        <input type="text" style="width:90px">
+        <input type="text" class="inline"> to $
+        <input type="text" class="inline">
     </label>
     <label>
         <input type="checkbox"> Saved from Cancel through Postponement to
-        <input type="text" style="width:140px">
+        <input type="text" class="inline">
     </label>
-    <label>
-        <input type="checkbox"> Processed the cancellation of Account, removed card on file and sent email confirmation
-    </label>
+    <label><input type="checkbox"> Processed the cancellation, removed card on file, and sent confirmation email</label>
 </div>
 
-<label>Coordination steps taken (if applicable):</label>
-<textarea></textarea>
+<label>Coordination steps taken (if applicable)</label>
+<textarea id="coordination"></textarea>
 
-<label>Asked for permission to put on hold:</label>
-<div class="toggle-group" data-id="hold" data-default="N/A"></div>
+<label>Asked for permission to put on hold</label>
+<div class="toggle-group" data-id="hold"></div>
 
-<label>Asked if additional help was needed:</label>
-<div class="toggle-group" data-id="help" data-default="Yes"></div>
+<label>Asked if additional help was needed</label>
+<div class="toggle-group" data-id="help"></div>
 
 <div class="actions">
     <button class="generate" onclick="generateSummary()">Summarize & Copy</button>
     <button class="clear" onclick="clearForm()">Clear Form</button>
 </div>
 
-<label>Generated Summary:</label>
-<textarea id="summary"></textarea>
+<label>Generated Summary</label>
+<textarea id="summary" readonly></textarea>
 
 </div>
 
 <script>
+const toggleDefaults = {
+    name: "Yes",
+    reflective: "Yes",
+    apology: "Yes",
+    help: "Yes",
+    hold: "N/A"
+};
+
 function setupToggles() {
     document.querySelectorAll(".toggle-group").forEach(group => {
         ["Yes","No","N/A"].forEach(val => {
             const btn = document.createElement("button");
             btn.textContent = val;
-            if (val === group.dataset.default) btn.classList.add("active");
+            if (val === toggleDefaults[group.dataset.id]) btn.classList.add("active");
             btn.onclick = () => {
                 group.querySelectorAll("button").forEach(b => b.classList.remove("active"));
                 btn.classList.add("active");
@@ -202,34 +212,52 @@ function setupToggles() {
 }
 
 function getToggle(group) {
-    return group.querySelector(".active").textContent;
+    return group.querySelector(".active")?.textContent || "N/A";
+}
+
+function getCheckedItems(container) {
+    let results = [];
+    container.querySelectorAll("label").forEach(label => {
+        const cb = label.querySelector("input[type=checkbox]");
+        if (cb && cb.checked) {
+            let text = label.innerText.trim();
+            label.querySelectorAll("input[type=text]").forEach(t => {
+                if (t.value) text += " " + t.value;
+            });
+            results.push("- " + text);
+        }
+    });
+    return results.length ? results.join("\n") : "- None";
 }
 
 function generateSummary() {
-    let text = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
+    let summary = "CUSTOMER REQUESTED TO CANCEL SERVICE\n\n";
 
-    document.querySelectorAll(".toggle-group").forEach(g => {
-        text += g.previousElementSibling.innerText + " " + getToggle(g) + "\n";
+    document.querySelectorAll(".toggle-group").forEach(group => {
+        summary += `${group.previousElementSibling.innerText}: ${getToggle(group)}\n`;
     });
 
-    text += "\nReason for Cancellation:\n" + document.getElementById("reason").value;
-    text += "\n\nCustomer Response to Solutions:\n" + document.getElementById("response").value;
+    summary += "\nReason for Cancellation:\n" + reason.value + "\n\n";
+    summary += "Solution(s) Offered:\n" +
+        getCheckedItems(document.getElementById("solutions")) + "\n\n";
+    summary += "Customer Response to Solutions:\n" + response.value + "\n\n";
+    summary += "Actions Taken in Account:\n" +
+        getCheckedItems(document.getElementById("actionsTaken")) + "\n\n";
+    summary += "Coordination Steps:\n" + coordination.value;
 
-    document.getElementById("summary").value = text;
-    navigator.clipboard.writeText(text);
+    summary.value = summary;
+    document.getElementById("summary").value = summary;
+    navigator.clipboard.writeText(summary);
 }
 
 function clearForm() {
     document.querySelectorAll("textarea, input[type=text]").forEach(e => e.value = "");
     document.querySelectorAll("input[type=checkbox]").forEach(e => e.checked = false);
 
-    document.querySelectorAll(".toggle-group").forEach(g => {
-        let def = "No";
-        if (["name","reflective","apology","help"].includes(g.dataset.id)) def = "Yes";
-        if (g.dataset.id === "hold") def = "N/A";
-
-        g.querySelectorAll("button").forEach(b => {
-            b.classList.toggle("active", b.textContent === def);
+    document.querySelectorAll(".toggle-group").forEach(group => {
+        const def = toggleDefaults[group.dataset.id];
+        group.querySelectorAll("button").forEach(btn => {
+            btn.classList.toggle("active", btn.textContent === def);
         });
     });
 }
