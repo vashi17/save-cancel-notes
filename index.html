@@ -220,18 +220,48 @@ function getToggle(id) {
   return document.querySelector(`.toggle-group[data-id="${id}"] .active`)?.textContent || "N/A";
 }
 
+/* ✅ FIXED CHECKBOX PARSER */
 function getCheckboxData(container) {
   const lines = [];
+
   container.querySelectorAll("label").forEach(label => {
     const cb = label.querySelector("input[type=checkbox]");
-    if (cb && cb.checked) {
-      let text = label.innerText.trim();
-      label.querySelectorAll("input[type=text]").forEach(i => {
-        if (i.value) text += " " + i.value;
-      });
-      lines.push("- " + text);
+    if (!cb || !cb.checked) return;
+
+    const textInputs = label.querySelectorAll("input[type=text]");
+    const baseText = label.textContent
+  .replace(/\$.*$/g, "")   // remove "$... to $..."
+  .replace(/Others:.*/i, "Others")
+  .replace(/\s+/g, " ")
+  .trim();
+
+
+    // Price Drop (two inputs)
+    if (textInputs.length === 2 && baseText.includes("Price Drop")) {
+      const from = textInputs[0].value || "___";
+      const to = textInputs[1].value || "___";
+      lines.push(`- ${baseText} $${from} to $${to}`);
+      return;
     }
+
+    // Postponement (one input)
+    if (textInputs.length === 1 && baseText.includes("Postponement")) {
+      const date = textInputs[0].value || "___";
+      lines.push(`- ${baseText} ${date}`);
+      return;
+    }
+
+    // Others (free text)
+    if (baseText.includes("Others")) {
+      const other = textInputs[0].value || "";
+      lines.push(`- Others: ${other}`);
+      return;
+    }
+
+    // Normal checkbox
+    lines.push(`- ${baseText}`);
   });
+
   return lines.length ? lines.join("\n") : "- None";
 }
 
