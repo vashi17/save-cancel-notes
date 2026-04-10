@@ -229,38 +229,36 @@ function getCheckboxData(container) {
     if (!cb || !cb.checked) return;
 
     const textInputs = label.querySelectorAll("input[type=text]");
-    const baseText = label.textContent
-  .replace(/from\s*\$.*?to\s*\$/i, "")
-  .replace(/Others:.*/i, "Others")
-  .replace(/\s+/g, " ")
-  .trim();
+    const labelText = label.textContent;
 
-
-
-    // Price Drop (two inputs)
-    if (textInputs.length === 2 && baseText.includes("Price Drop")) {
+    // ✅ PRICE DROP (two inputs)
+    if (labelText.includes("Price Drop") && textInputs.length === 2) {
       const from = textInputs[0].value || "___";
       const to = textInputs[1].value || "___";
-      lines.push(`- ${baseText} from $${from} to $${to}`);
+      lines.push(`- Offered Price Drop from $${from} to $${to}`);
       return;
     }
 
-    // Postponement (one input)
-    if (textInputs.length === 1 && baseText.includes("Postponement")) {
+    // ✅ POSTPONEMENT (one input)
+    if (labelText.includes("Postponement") && textInputs.length === 1) {
       const date = textInputs[0].value || "___";
-      lines.push(`- ${baseText} ${date}`);
+      lines.push(`- Saved from Cancel through Postponement to ${date}`);
       return;
     }
 
-    // Others (free text)
-    if (baseText === "Others") {
+    // ✅ OTHERS (free text)
+    if (labelText.includes("Others") && textInputs.length === 1) {
       const other = textInputs[0].value || "";
       lines.push(`- Others: ${other}`);
       return;
     }
 
-    // Normal checkbox
-    lines.push(`- ${baseText}`);
+    // ✅ NORMAL CHECKBOX (no text inputs)
+    const cleanText = labelText
+      .replace(/\s+/g, " ")
+      .trim();
+
+    lines.push(`- ${cleanText}`);
   });
 
   return lines.length ? lines.join("\n") : "- None";
